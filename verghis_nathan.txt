@@ -1,0 +1,43 @@
+Nathan Verghis
+1115519
+CIS*4780
+A1
+
+
+
+1:
+My extractor is an extension of the simple example, as not only does it improve on the methods of feature extraction used for measuring distance from food/ghosts, but it also takes into account the state of the ghosts (scared/regular).
+This differentiation allows Pac-Man to optimize on the large point bonus for eating a scared ghost (200). This ultimately maximizes the average points per game, which in turn improves the win/loss ratio over multiple games.
+Pac-Man will filter actions based on: searching for weak ghosts, running from strong ghosts, searching for power-up capsules, and finally consuming food.
+
+
+myExtractor mediumGrid average score:       526.4
+myExtractor mediumClassic average score:    1668.7
+
+2:
+My layout was designed to benefit my agent over a simpler version based on the differences in their feature selection. Given that a simpler agent fails to differentiate a scared ghost from a strong one,
+and therefore miss the bonus points of consuming a scared ghost, I designed my layout to capitalize on those scenarios. I've increased the number of capsules and overall ghosts, to create more opportunities for
+Pac-Man to encounter a scared ghost. This is reflected in the difference in average score between my agent and the simple one.
+
+
+Simple Agent:
+
+A1: $ python pacman.py -p ApproximateQAgent -a extractor=SimpleExtractor -x 50 -n 60 -l mylayout
+...
+('Average Score:', 910.5)
+...
+Win Rate:      2/10 (0.20)
+('Record:       ', 'Win, Loss, Loss, Loss, Loss, Loss, Loss, Loss, Loss, Win')
+
+
+My Agent:
+
+A1: $ python pacman.py -p ApproximateQAgent -a extractor=myExtractor -x 50 -n 60 -l mylayout
+...
+('Average Score:', 2776.0)
+...
+Win Rate:      0/10 (0.00)
+('Record:       ', 'Loss, Loss, Loss, Loss, Loss, Loss, Loss, Loss, Loss, Loss')
+
+It's important to notice that while the simple agent appears to perform greater in terms of wins/losses, my agent has a
+substantially higher score per game average, which is a better indicator of performance.
